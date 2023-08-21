@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import prisma from './db.js';
 
 dotenv.config()
-prisma.$connect()
+await prisma.$connect()
 
 const PORT: Number = Number(process.env.PORT ?? 3000);
 
