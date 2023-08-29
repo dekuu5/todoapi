@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { User as zodUser } from './users.models.js';
-import { createUser, destroySession, userExits, authenticateUser, findUserBySession } from "./users.controlers.js";
+import { createUser,  userExits, authenticateUser,destroySession ,findUserBySession } from "./users.controlers.js";
 import { createSession } from "../../utils/sessions.js";
 import { User } from "@prisma/client";
 
@@ -40,14 +40,8 @@ export async function userSignIn(req: Request, res: Response) {
 
 export async function userSignOut(req: Request, res: Response) {
   
-  const status = await destroySession(req.body.session);
-  if (status === 1) {
-    return res.json({ message: "Session destroyed" });
-  }else {
-    return res.json({ message: "Session not found" });
-  }
-  
-
+  await destroySession(req.body.session);
+  return res.json({ message: "Session destroyed" });
 }
 
 export async function userMe(req: Request, res: Response) {
@@ -55,8 +49,7 @@ export async function userMe(req: Request, res: Response) {
   if (!userIfExists) {
     return res.status(404).json({ message: "User not found" });
   }
-  const user = userIfExists.user;
-
-  res.json({ ...user });
+  
+  res.json(userIfExists);
   
 }
