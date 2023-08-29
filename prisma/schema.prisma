@@ -25,7 +25,6 @@ model User {
 
 model Todo {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  todoId      Int      @unique 
   createdAt   DateTime @default(now())
   completed   Boolean  @default(false)
   description String

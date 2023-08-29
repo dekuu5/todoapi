@@ -55,6 +55,8 @@ export async function userMe(req: Request, res: Response) {
   if (!userIfExists) {
     return res.status(404).json({ message: "User not found" });
   }
-  res.json(userIfExists.user);
+  const user = userIfExists.user;
+
+  res.json({ ...user });
   
 }
