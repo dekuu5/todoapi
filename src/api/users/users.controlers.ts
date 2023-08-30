@@ -53,8 +53,5 @@ export async function findUserBySession(s: string) {
       email: userEmail as string,
     }
   });
-  console.log(user);
-  
-  
   return user;
 }
