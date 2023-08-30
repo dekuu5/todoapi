@@ -27,8 +27,7 @@ export async function userExits(userEmail:string): Promise<User | boolean> {
       email: userEmail
     }
   })
-  console.log(user);
-  
+
    return user ? user : false;
 } 
 
@@ -54,6 +53,8 @@ export async function findUserBySession(s: string) {
       email: userEmail as string,
     }
   });
+  console.log(user);
+  
   
   return user;
 }
